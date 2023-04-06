@@ -56,7 +56,8 @@ clock = pygame.time.Clock()
 
 hamburger = Hamburger()
 toppings = pygame.sprite.Group()
-dragging_topping = None
+
+dragging_topping = None  # added variable to keep track of the topping being dragged
 
 while True:
     for event in pygame.event.get():
@@ -75,7 +76,9 @@ while True:
                         mouse_x, mouse_y = event.pos
                         topping.offset_x = mouse_x - topping.rect.x
                         topping.offset_y = mouse_y - topping.rect.y
+                        dragging_topping = topping  # set the dragging topping to the current topping
         elif event.type == pygame.MOUSEBUTTONUP:
+            dragging_topping = None  # reset the dragging topping
             for topping in toppings:
                 topping.dragging = False
 
@@ -86,6 +89,9 @@ while True:
     screen.blit(hamburger.image, hamburger.rect)
     toppings.draw(screen)
     
+    # added conditional to only update the dragging topping
+    if dragging_topping:
+        dragging_topping.update()
 
     pygame.display.flip()
 
