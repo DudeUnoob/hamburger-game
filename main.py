@@ -63,7 +63,9 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        #mouse click and input event
         elif event.type == pygame.MOUSEBUTTONDOWN:
+             #looping through list
             for i, topping_choice in enumerate(topping_choices):
                 if topping_choice["name"] in ["Lettuce", "Tomato", "Cheese"]:
                     topping = Topping(topping_choice["image"])

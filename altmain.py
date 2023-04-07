@@ -46,11 +46,22 @@ class Topping(pygame.sprite.Sprite):
             self.rect.x = mouse_x - self.offset_x
             self.rect.y = mouse_y - self.offset_y
 
+#list here
 topping_choices = [
     {"name": "Lettuce", "image": lettuce_image},
     {"name": "Tomato", "image": tomato_image},
     {"name": "Cheese", "image": cheese_image}
 ]
+
+#function with parameter, for loop, and if statement
+def getToppings(toppings):
+    for topping in topping_choices:
+        if(topping['name'] == "Lettuce"):
+            print("passed lettuce")
+        else:
+            print("not lettuce")
+
+getToppings(topping_choices)
 
 clock = pygame.time.Clock()
 
@@ -64,7 +75,9 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        #mouse click and input event
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            #looping through list
             for i, topping_choice in enumerate(topping_choices):
                 if topping_choice["name"] in ["Lettuce", "Tomato", "Cheese"]:
                     topping = Topping(topping_choice["image"])
